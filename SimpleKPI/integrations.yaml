@@ -25,7 +25,7 @@ auth_schemes:
         displayName: Base URL
         description: "The base URL for the SimpleKPI API endpoint."
         type: string
-        default: {{api endpoint URL of the app}}
+        default: https://{subdomain}.simplekpi.com/api/
 
   # API-Key
   - scheme_name: simplekpi_api_key
@@ -47,13 +47,13 @@ auth_schemes:
         description: "The base URL for the SimpleKPI API endpoint."
         type: string
         required: false
-        default: {{add the api endpoint URL of the app}}
+        default: https://{subdomain}.simplekpi.com/api/
 
   # BASIC
   - scheme_name: simplekpi_basic
     auth_mode: BASIC
     proxy:
-      base_url: {{add the api_endpoint_url}}
+      base_url: https://{subdomain}.simplekpi.com/api/
     fields:
       - name: api_key
         displayName: API Key
