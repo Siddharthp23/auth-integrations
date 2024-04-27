@@ -1,0 +1,28 @@
+name: Baserow
+docs: https://baserow.io/user-docs/database-api
+description: Baserow is an open-source, no-code database tool that allows you to create your own online database without any technical experience.
+logo: https://pipedream.com/s.v0/app_13Ghl7/logo/orig
+categories: ["database", "no-code"]
+get_current_user_endpoint: /api/user/
+
+auth_schemes:
+  - scheme_name: baserow_api_key
+    auth_mode: API_KEY
+    proxy:
+      base_url: "https://api.baserow.io/"
+      headers:
+        Authorization: "Token {{api_key}}"
+    fields:
+      - name: api_key
+        expected_from_customer: true
+        displayName: API Key
+        description: "API key to authenticate with the Baserow API"
+        type: string
+        required: true
+      - name: base_url
+        expected_from_customer: true
+        displayName: Base URL
+        description: "Base URL for the Baserow API"
+        type: string
+        required: true
+        default: https://api.baserow.io/api/
