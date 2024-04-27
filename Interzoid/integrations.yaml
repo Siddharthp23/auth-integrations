@@ -12,7 +12,7 @@ auth_schemes:
     proxy:
       base_url: "https://connect.interzoid.com/api"
       headers:
-        Authorization: "92e7ff9aca8926418686be94c0b9dede"
+        Authorization: "{{api_key}}"
     fields:
       - name: api_key
         expected_from_customer: true
