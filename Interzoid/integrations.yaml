@@ -1,0 +1,29 @@
+name: Interzoid
+docs: https://www.interzoid.com
+description: Interzoid provides a cloud-based data matching and enhancement platform with Generative AI-powered algorithms to improve the quality and value of data assets.
+logo: https://pipedream.com/s.v0/app_1YMhe9/logo/orig
+categories: ["data", "api"]
+get_current_user_endpoint: ""
+
+auth_schemes:
+  # API-Key
+  - scheme_name: interzoid_api_key
+    auth_mode: API_KEY
+    proxy:
+      base_url: "https://connect.interzoid.com/api"
+      headers:
+        Authorization: "{{api_key}}"
+    fields:
+      - name: api_key
+        expected_from_customer: true
+        displayName: API Key
+        description: "The API key used to authenticate with the Interzoid API."
+        type: string
+        required: true
+      - name: base_url
+        expected_from_customer: true
+        displayName: Base URL
+        description: "The base URL for the Interzoid API endpoint."
+        type: string
+        required: false
+        default: https://connect.interzoid.com/api
