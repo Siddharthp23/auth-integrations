@@ -1,0 +1,94 @@
+name: New York Times
+docs: https://developer.nytimes.com/docs
+description: The New York Times API provides access to a wide range of news and information from this renowned publication, allowing developers to leverage high-quality content programmatically.
+logo: https://pipedream.com/s.v0/app_X2RhM0/logo/orig
+categories: ["news", "media"]
+get_current_user_endpoint: ""
+
+auth_schemes:
+  # OAuth2
+  - scheme_name: nytimes_oauth2
+    auth_mode: OAUTH2
+    authorization_url: [authorization_url]
+    token_url: [token_url]
+    default_scopes: [""]
+    scope_separator: ','
+    token_access_request_method: 
+    authorization_params:
+        response_type:
+    token_params:
+        grant_type:
+    proxy:
+      base_url: "{{base_url}}"
+    fields:
+      - name: base_url
+        displayName: Base URL
+        description: "The base URL for the New York Times API endpoint."
+        type: string
+        default: {{api endpoint URL of the app}}
+
+  # OAuth1
+  - scheme_name: nytimes_oauth1
+    auth_mode: OAuth1
+    request_url: [request_url]
+    authorization_url: [authorization_url]
+    token_url: [token_url]
+    signature_method: 
+    default_scopes: [""]
+    scope_separator: ','
+    authorization_params:
+        expiration:
+    token_params:
+        grant_type:
+    proxy:
+      base_url: "{{base_url}}"
+    fields:
+      - name: base_url
+        displayName: Base URL
+        description: "The base URL for the New York Times API endpoint."
+        type: string
+        default: https://api.nytimes.com/svc/
+
+  # API-KEY
+  - scheme_name: nytimes_api_key
+    auth_mode: API_KEY
+    proxy:
+      base_url: "{{base_url}}"
+      headers:
+        Authorization: "{{api_key}}"
+    fields:
+      - name: api_key
+        expected_from_customer: true 
+        displayName: API Key
+        description: "The API key used to authenticate with the New York Times API."
+        type: string
+        required: true
+      - name: base_url
+        expected_from_customer: true 
+        displayName: Base URL
+        description: "The base URL for the New York Times API endpoint."
+        type: string
+        required: false
+        default: https://api.nytimes.com/svc/
+
+  # BASIC
+  - scheme_name: nytimes_basic
+    auth_mode: BASIC
+    proxy:
+      base_url: {{add the api_endpoint_url}}
+    fields:
+      - name: api_key
+        displayName: API Key
+        description: "desc_here"
+        type: string
+        expected_from_customer: true
+      - name: username
+        displayName: Username
+        description: "desc_here"
+        type: string
+        expected_from_customer: 
+      - name: password
+        displayName: Password
+        description: "your password here."
+        type: string
+        expected_from_customer: true
