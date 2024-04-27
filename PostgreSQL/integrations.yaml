@@ -1,0 +1,67 @@
+name: PostgreSQL
+docs: https://www.postgresql.org/docs/
+description: PostgreSQL is a powerful, open-source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
+logo: https://pipedream.com/s.v0/app_1M0hNB/logo/orig
+categories: ["database", "sql"]
+get_current_user_endpoint: ""
+
+auth_schemes:
+  # OAuth2
+  - scheme_name: postgresql_oauth2
+    auth_mode: OAUTH2
+    authorization_url: https://example.com/oauth/authorize
+    token_url: https://example.com/oauth/token
+    default_scopes: ["read", "write"]
+    scope_separator: ','
+    token_access_request_method: POST
+    authorization_params:
+      response_type: code
+    token_params:
+      grant_type: authorization_code
+    proxy:
+      base_url: "{{base_url}}"
+    fields:
+      - name: base_url
+        displayName: Base URL
+        description: "The base URL for the PostgreSQL API endpoint."
+        type: string
+        default: https://api.example.com/v1
+
+  # API-KEY
+  - scheme_name: postgresql_api_key
+    auth_mode: API_KEY
+    proxy:
+      base_url: "{{base_url}}"
+      headers:
+        Authorization: "{{api_key}}"
+    fields:
+      - name: api_key
+        expected_from_customer: true
+        displayName: API Key
+        description: "The API key used to authenticate with the PostgreSQL API."
+        type: string
+        required: true
+      - name: base_url
+        expected_from_customer: true
+        displayName: Base URL
+        description: "The base URL for the PostgreSQL API endpoint."
+        type: string
+        required: false
+        default: https://api.example.com/v1
+
+  # BASIC
+  - scheme_name: postgresql_basic
+    auth_mode: BASIC
+    proxy:
+      base_url: https://api.example.com/v1
+    fields:
+      - name: username
+        displayName: Username
+        description: "The username used to authenticate with the PostgreSQL API."
+        type: string
+        expected_from_customer: true
+      - name: password
+        displayName: Password
+        description: "The password used to authenticate with the PostgreSQL API."
+        type: string
+        expected_from_customer: true
