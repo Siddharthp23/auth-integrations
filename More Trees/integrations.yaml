@@ -1,0 +1,27 @@
+name: More Trees API
+docs: https://www.moretrees.eco/learn/user-guides/api
+description: The More Trees public API with basic authorisation, allows you to retrieve information from More Trees and send tree planting requests.
+logo: https://pipedream.com/s.v0/app_OVWh2y/logo/orig
+categories: ["environment", "sustainability"]
+get_current_user_endpoint: /user-management-api/external/forest/{forest_slug_or_account_code}
+auth_schemes:
+scheme_name: more_trees_api_key
+auth_mode: API_KEY
+proxy:
+base_url: "https://user-management-service.platform.moretrees.eco"
+headers:
+Authorization: "{{api_key}}"
+fields:
+name: api_key
+expected_from_customer: true
+displayName: API Key
+description: "API key to authenticate with the More Trees API"
+type: string
+required: true
+name: base_url
+expected_from_customer: true
+displayName: Base URL
+description: "Base URL for the More Trees API"
+type: string
+required: false
+default: "https://user-management-service.platform.moretrees.eco"
